@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klinkbox countdown page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .rootDiv {
+            max-width: 100% !important;
+            width: 75vw !important;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .box {
+            width: 175px;
+            height: 175px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            padding: 5px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            color: black;
+            background-color: whitesmoke;
+        }
+        .box.no-access {
+            background-color: #f0f0f0 !important;
+            color: #888888 !important;
+            cursor: not-allowed;
+        }
+        .box:hover {
+            transform: translateY(-5px);
+        }
+        .box.careful1 { /* Light blue */
+            background-color: #00adffAA !important; 
+        }
+        .box.careful2 {/* Light orange */
+            background-color: #FF8C00AA !important;
+        }
+        .box.careful3 { /* Light green */
+            background-color: #FF0000AA !important;
+        }
+        .box.favorite { /* yellow border */
+            border: 2px solid #FFD700 !important;
+        }
+        .box h2 {
+            margin: 0;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        .box .countdown {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 3em;
+        }
+    </style>
+    <script>
+
+        function saveConfig() {
+            localStorage.setItem("key", document.getElementById("keyInput").value);
+            const favoriteElements = document.querySelectorAll(".box.favorite");
+            const favoriteArray = [];
+            for (const element of favoriteElements) {
+                favoriteArray.push(element.querySelector("h2").textContent);
+            }
+            localStorage.setItem("favorite", JSON.stringify(favoriteArray));
+        }
+        function loadConfig() {
+            const key = localStorage.getItem("key");
+            if (key) document.getElementById("keyInput").value = key;
+            const favorite = localStorage.getItem("favorite");
+            if (favorite) {
+                const favoriteArray = JSON.parse(favorite);
+                for (const element of document.querySelectorAll(".box")) {
+                    if (favoriteArray.includes(element.querySelector("h2").textContent)) {
+                        element.classList.add("favorite");
+                    } else {
+                        element.classList.remove("favorite");
+                    }
+                }
+            }
+        }
+        window.addEventListener("beforeunload", saveConfig);
+        loadConfig();
+
+        let lastTimestamp = 0;
+
+        function createBoxes(sections) {
+            const mainElement = document.getElementById("main");
+            for (const sectionName in sections) {
+                const section = sections[sectionName];
+                const sectionElement = document.createElement("div");
+                sectionElement.classList.add("section");
+                sectionElement.id = sectionName;
+                const h2 = document.createElement("h2");
+                h2.textContent = sectionName;
+                sectionElement.appendChild(h2);
+                const listElement = document.createElement("div");
+                listElement.classList.add("list");
+                for (const boxName in section.boxes) {
+                    const box = section.boxes[boxName];
+                    const boxElement = document.createElement("div");
+                    boxElement.classList.add("box");
+                    if(box.allowed) { // Allowed box
+                        boxElement.setAttribute("box-baseTimestamp", box.baseTimestamp);
+                        boxElement.setAttribute("box-cooldownDuration", box.cooldownDuration);
+                        const boxNameElement = document.createElement("h2");
+                        boxNameElement.textContent = boxName;
+                        boxElement.appendChild(boxNameElement);
+                        const countdownElement = document.createElement("div");
+                        countdownElement.classList.add("countdown");
+                        boxElement.appendChild(countdownElement);
+                        listElement.appendChild(boxElement);
+                    } else { // Not allowed box
+                        boxElement.classList.add("no-access");
+                        boxElement.setAttribute("title", "You do not have access to this box.");
+                        const boxNameElement = document.createElement("h2");
+                        boxNameElement.textContent = boxName;
+                        boxElement.appendChild(boxNameElement);
+                        listElement.appendChild(boxElement);
+                    }
+                }
+                sectionElement.appendChild(listElement);
+                mainElement.appendChild(sectionElement);
+            }
+        }
+
+        window.onload = () => {
+
+            let code = localStorage.getItem("klinkbox-code") ?? null
+            if(code) {
+                fetch(`/api/sections?code=${code}`).then( async (response) => {
+                    let json_data = await response.json();
+                    if(!json_data.error) {
+                        localStorage.setItem("klinkbox-code", code);
+                        let sections = json_data.sections;
+                        createBoxes(sections);
+                    } else {
+                        console.error("Error fetching sections:", json_data.error);
+                        alert(`Error: ${json_data.error}`);
+                        return;
+                    }
+                }).catch(error => {
+                    console.error("Error fetching sections:", error);
+                    alert("Error fetching sections. Please check your code or try again later.");
+                });
+            } else {
+                // If no code is stored, ask for code
+                let inputedCode;
+                while (!inputedCode) {
+                    inputedCode = prompt("Please enter your Klinkbox code:");
+                    if (!inputedCode) {
+                        alert("No code provided. Please enter a code.");
+                    }
+                }
+
+                localStorage.setItem("klinkbox-code", inputedCode);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+
+        function inputNewCode() {
+            inputedCode = prompt("Please enter your Klinkbox code:");
+            localStorage.setItem("klinkbox-code", inputedCode);
+            setTimeout(() => {
+                window.location.reload();
+            }, 200);
+        }
+
+        setInterval(updateClocks, 500);
+
+        function formatRemainingTime(remainingTime) {
+            // if more than 1 hour, return hh:mm:ss
+            if (remainingTime >= 3600000) {
+                const hours = Math.floor(remainingTime / 3600000);
+                const minutes = Math.floor((remainingTime % 3600000) / 60000);
+                const seconds = Math.floor((remainingTime % 60000) / 1000);
+                return `${hours}h ${minutes}m ${seconds}`;
+            }
+            // if less than 1 hour and more than 1 minute, return mm:ss
+            else if (remainingTime >= 60000) {
+                const minutes = Math.floor(remainingTime / 60000);
+                const seconds = Math.floor((remainingTime % 60000) / 1000);
+                return `${minutes}m ${seconds}`;
+            }
+            // if less than 1 minute, return ss
+            else {
+                const seconds = Math.floor(remainingTime / 1000);
+                return `${seconds}`;
+            }
+        }
+
+        function updateClocks() {
+            const boxes = document.querySelectorAll(".box");
+            const now = Date.now();
+            boxes.forEach(box => {
+                const baseTimestamp = parseInt(box.getAttribute("box-baseTimestamp"), 10);
+                const cooldownDuration = parseInt(box.getAttribute("box-cooldownDuration"), 10);
+                const countdownElement = box.querySelector(".countdown");
+                const elapsedTime = now - baseTimestamp;
+                const remainingTime = (cooldownDuration - (elapsedTime % cooldownDuration));
+
+                box.classList.remove("careful1", "careful2", "careful3");
+
+                if (remainingTime > 0) {
+                    countdownElement.textContent = `${formatRemainingTime(remainingTime)} `;
+                    if (remainingTime < 60000) box.classList.add("careful1");
+                    if (remainingTime < 30000) box.classList.add("careful2");
+                    if (remainingTime < 10000) box.classList.add("careful3");
+                }
+            });
+        }
+
+        function getNow() {
+            const now = Date.now();
+            document.getElementById("timestampOutput").value = now;
+            document.getElementById("cooldownDurationOutput").value = now - lastTimestamp;
+            lastTimestamp = now;
+        }
+    </script>
+</head>
+<body>
+    
+    <div class="rootDiv container mt-6">
+        <button class="btn btn-secondary mb-4" onclick="inputNewCode()">Change Klinkbox code</button>
+        <div class="buttons mb-4">
+            <button class="btn btn-primary" onclick="getNow()">Get now</button>
+            <input type="text" class="form-control d-inline-block w-auto ml-2" id="timestampOutput" placeholder="Timestamp will appear here" readonly />
+            <input type="text" class="form-control d-inline-block w-auto ml-2" id="cooldownDurationOutput" placeholder="Time since last timestamp dump" readonly />
+        </div>
+        <div id="main"></div>
+    </div>
+
+</body>
+</html>
+
