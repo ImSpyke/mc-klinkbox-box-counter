@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 
 // App use log every request before and after with the returned status code
 app.use((req, res, next) => {
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    const ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress).split(', ')[0];
     console.log(`[${ip}] ${req.method} ${req.originalUrl} ${req.headers['user-agent']}`);
     res.on('finish', () => {
         console.log(`[${ip}] ${req.method} ${req.originalUrl} - Status: ${res.statusCode}`);
