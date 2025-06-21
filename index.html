@@ -139,6 +139,7 @@
 
         window.onload = () => {
 
+            /*
             let code = localStorage.getItem("klinkbox-code") ?? null
             if(code) {
                 fetch(`/api/sections?code=${code}`).then( async (response) => {
@@ -171,6 +172,25 @@
                     window.location.reload();
                 }, 200);
             }
+            */
+
+            let code = "nMnkf5f3"
+            fetch(`/api/sections?code=${code}`).then( async (response) => {
+                let json_data = await response.json();
+                if(!json_data.error) {
+                    localStorage.setItem("klinkbox-code", code);
+                    let sections = json_data.sections;
+                    createBoxes(sections);
+                } else {
+                    console.error("Error fetching sections:", json_data.error);
+                    alert(`Error: ${json_data.error}`);
+                    return;
+                }
+            }).catch(error => {
+                console.error("Error fetching sections:", error);
+                alert("Error fetching sections. Please check your code or try again later.");
+            });
+            
         };
 
         function inputNewCode() {
@@ -236,7 +256,9 @@
 <body>
     
     <div class="rootDiv container mt-6">
+        <!--
         <button class="btn btn-secondary mb-4" onclick="inputNewCode()">Change Klinkbox code</button>
+        -->
         <div class="buttons mb-4">
             <button class="btn btn-primary" onclick="getNow()">Get now</button>
             <input type="text" class="form-control d-inline-block w-auto ml-2" id="timestampOutput" placeholder="Timestamp will appear here" readonly />
