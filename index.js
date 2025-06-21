@@ -15,12 +15,10 @@ app.use((req, res, next) => {
 
 // App use log every request before and after with the returned status code
 app.use((req, res, next) => {
-    console.log(`${req.method} ${req.originalUrl} ${req.headers['user-agent']}`);
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    console.log(`[${ip}] ${req.method} ${req.originalUrl} ${req.headers['user-agent']}`);
     res.on('finish', () => {
-        console.log(`${req.method} ${req.originalUrl} - Status: ${res.statusCode}`);
-        if (res.statusCode >= 400) {
-            console.error(`${res.statusCode} - ${req.method} ${req.originalUrl}`);
-        }
+        console.log(`[${ip}] ${req.method} ${req.originalUrl} - Status: ${res.statusCode}`);
     });
     next();
 });
