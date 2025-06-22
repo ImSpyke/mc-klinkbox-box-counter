@@ -93,56 +93,56 @@
     "sections": {
         "Overworld": {
             "boxes": {
-                "1 - Wood":     { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-1" },
-                "2 - Stone":    { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-2" },
-                "3 - Iron":     { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-3" },
-                "4 - Gold":     { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-4" },
-                "5 - Diamond":  { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-5" },
-                "6 - Emerald":  { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-6" },
-                "7 - Netherite":{ "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-7" },
-                "Deutsch":      { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-8" },
-                "Gelb":         { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-9" },
-                "Rot":          { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-10" },
-                "Limette":      { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "1-11" }
+                "1 - Wood":     { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-1" },
+                "2 - Stone":    { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-2" },
+                "3 - Iron":     { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-3" },
+                "4 - Gold":     { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-4" },
+                "5 - Diamond":  { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-5" },
+                "6 - Emerald":  { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-6" },
+                "7 - Netherite":{ "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-7" },
+                "Deutsch":      { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-8" },
+                "Gelb":         { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-9" },
+                "Rot":          { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-10" },
+                "Limette":      { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "1-11" }
             }
         },
         "Nether": {
             "boxes": {
-                "1 - Obsidian":     { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "2-1" },
-                "2 - Warped Wood":  { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "2-2" },
-                "3 - Basalt":       { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "2-3" },
-                "4 - Quartz":       { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "2-4" },
+                "1 - Obsidian":     { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "2-1" },
+                "2 - Warped Wood":  { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "2-2" },
+                "3 - Basalt":       { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "2-3" },
+                "4 - Quartz":       { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "2-4" },
                 "5 - Beacon":       { "baseTimestamp": 1750518150000, "cooldownDuration": 300000,"uuid": "2-5" }
             }
         },
         "Candy": {
             "boxes": {
-                "1 - White Candy":  { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "3-1" },
-                "2 - Orange Candy": { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "3-2" },
-                "3 - Green Candy":  { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "3-3" },
-                "4 - Blue Candy":   { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "3-4" },
-                "5 - Pink Candy":   { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "3-5" },
+                "1 - White Candy":  { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "3-1" },
+                "2 - Orange Candy": { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "3-2" },
+                "3 - Green Candy":  { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "3-3" },
+                "4 - Blue Candy":   { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "3-4" },
+                "5 - Pink Candy":   { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "3-5" },
                 "6 - Magical Candy":{ "baseTimestamp": 1750518150000, "cooldownDuration": 300000,"uuid": "3-6" }
             }
         },
         "End": {
             "boxes": {
-                "1 - Purpur":           { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "4-1" },
-                "2 - Violett":          { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "4-2" },
-                "3 - Endstone":         { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "4-3" },
-                "4 - End Portal Frame": { "baseTimestamp": 1750518150000, "cooldownDuration": 600000,"uuid": "4-4" }
+                "1 - Purpur":           { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "4-1" },
+                "2 - Violett":          { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "4-2" },
+                "3 - Endstone":         { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "4-3" },
+                "4 - End Portal Frame": { "baseTimestamp": 1750603650000, "cooldownDuration": 600000,"uuid": "4-4" }
             }
         },
         "Deep Dark": {
             "boxes": {
-                "1 - Deepslate Coal":   { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "5-1" },
-                "2 - Deepslate Iron":   { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "5-2" },
-                "3 - Deepslate Copper": { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "5-3" },
-                "4 - Deepslate Gold":   { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "5-4" },
-                "5 - Deepslate":        { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "5-5" },
-                "6 - Sculk":            { "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "5-6" },
-                "7 - Deepslate Diamond":{ "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "5-7" },
-                "8 - Deepslate Emerald":{ "baseTimestamp": 1750516889000, "cooldownDuration": 60000, "uuid": "5-8" },
+                "1 - Deepslate Coal":   { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "5-1" },
+                "2 - Deepslate Iron":   { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "5-2" },
+                "3 - Deepslate Copper": { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "5-3" },
+                "4 - Deepslate Gold":   { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "5-4" },
+                "5 - Deepslate":        { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "5-5" },
+                "6 - Sculk":            { "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "5-6" },
+                "7 - Deepslate Diamond":{ "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "5-7" },
+                "8 - Deepslate Emerald":{ "baseTimestamp": 1750516890000, "cooldownDuration": 60000, "uuid": "5-8" },
                 "9 - Bedrock":          { "baseTimestamp": 0, "cooldownDuration": 0,                 "uuid": "5-9" }
             }
         }
